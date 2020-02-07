@@ -15,5 +15,5 @@ cd $THEOS
 mkdir bin
 cd bin 
 rm -rf updateCozy.sh
-echo "source <(curl -s https://raw.githubusercontent.com/KritantaDev/libCozy/master/install.sh)" > updateCozy.sh
+echo "bash <(curl -s https://raw.githubusercontent.com/KritantaDev/libCozy/master/install.sh)" > updateCozy.sh
 chmod +x updateCozy.sh
