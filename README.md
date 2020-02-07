@@ -72,7 +72,7 @@ In the file you want to use Cozy in.
 UIImage *image = <get your artwork image>;
 
 // options is a list of options for the color analyzer. here, we want none enabled. 
-NSDictionary *options = @[];
+NSArray *options = @[];
 // Finally, pass these to the analyzer and get our schema. 
 CozySchema *schema = [CozyAnalyzer schemaForImage:image withOptions:options];
 
@@ -97,7 +97,7 @@ Many more colors are generated with default options. See the [CozySchema](#CozyS
 
 ```objc
 UIImage *image = <get your artwork image>;
-NSDictionary *options = @[ @"fullBlack" ];
+NSArray *options = @[ @"fullBlack" ];
 CozySchema *schema = [CozyAnalyzer schemaForImage:image withOptions:options];
 ```
 
