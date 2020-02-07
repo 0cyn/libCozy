@@ -35,7 +35,7 @@ Other Reference
 
 To add this library to your Theos configuration, you can run the command below in Terminal
 
-`bash <(curl -s https://raw.githubusercontent.com/KritantaDev/libCozy/master/install.sh)`
+`bash <(curl -s https://raw.githubusercontent.com/KritantaDev/libCozy/master/configureTheos.sh)`
 
 **To update your Cozy implementation, you can run `$THEOS/bin/updateCozy.sh`**
 
