@@ -56,6 +56,15 @@
     schema.contrastColor = generatedColors[@"secondary"];
     schema.backgroundColor = generatedColors[@"background"];
     schema.darker = !(schema.backgroundColor.v >=0.6);
+    if (([schema.options containsObject:@"preferCoolBackground"]))
+    {
+        if ([self coolnessForColor:schema.contrastColor] > [self coolnessForColor:schema.backgroundColor])
+        {
+            schema.backgroundColor = schema.contrastColor;
+            schema.contrastColor = generatedColors[@"background"];
+        }
+    }
+        
     if (([schema.options containsObject:@"alwaysLightForeground"]))
         schema.darker = YES;
     if (schema.darker)
@@ -416,6 +425,11 @@
 -(int)colourDistance:(CozyColor *)a andB:(CozyColor *)b 
 {
     return fabs(a.r-b.r)+fabs(a.g-b.g)+fabs(a.b-b.b);
+}
+
++ (CGFloat)coolnessForColor:(CozyColor *)a
+{
+    return (1 - (ABS(180 - a.h) / 180));
 }
 
 // Color needs to be a bit brighter
