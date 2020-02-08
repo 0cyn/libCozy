@@ -49,4 +49,7 @@
 
 + (CozyColor *)darkerColorForColor:(CozyColor *)c byFraction:(CGFloat)frac;
 
+
++ (CGFloat)coolnessForColor:(CozyColor *)a;
+
 @end

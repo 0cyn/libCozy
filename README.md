@@ -189,6 +189,7 @@ A Saturation value lower than `0.15` typically means the color is very close to 
 | fullBlack | Allows very low brightness levels for background colors | |
 | ~~paletteAPI~~ | Whenever too few colors are found, call an online color API from what was found and create a new palette **Not Yet Implemented** | |
 | noFallbackGeneration | Don't try to cleverly generate a color palette when finding certain colors fail. May improve speed, but may also look bad on certain images. | paletteAPI |
+| preferCoolBackground | If primary colors are much cooler (color temp) than background colors, swap the two. Looks much better in most cases. | |
 | alwaysLightForeground | Use this option if you want controls to be lighter regardless of background brightness | |
 | darkenBackgroundTillReadable | Use in conjunction with alwaysLightForeground to darken background till light text is readable | |
 | dumb | Sacrifice a quality palette for speed. Good for when you only need a simple color. | All options above | 
