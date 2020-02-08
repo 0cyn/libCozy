@@ -137,34 +137,34 @@ To get a UIColor from a CozyColor, use the instance method `- (UIColor *)getColo
 
 You shouldn't need to edit CozyColors. Using `getColor` only is recommended. But, in the event that you do, CozyColor offers some conveniences.
 
-Upon initialization, it creates RGBA values, and then uses UIKit to generate HSB values.
+Upon initialization, it creates RGBA values, and then uses UIKit to generate HSV values.
 
 **RGBA values are editable. HSB are measurements only**
 
 CozyColor r/g/b values are measured on a scale from 0-255;
 
-CozyColor a/h/s/b values are measured on a scale from 0-1;
+CozyColor a/h/s/v values are measured on a scale from 0-1;
 
-Editing HSB values will not affect the color, and they should only be used for measurements. 
+Editing HSV values will not affect the color, and they should only be used for measurements. 
 
-To get new HSB values, initialize a new instance of CozyColor. 
+To get new HSV values, initialize a new instance of CozyColor. 
 
 To initialize a CozyColor, `[[CozyColor alloc] initWithRed:r green:g blue:b];`
 
 
 # Cool Tricks with CozyColors and color palettes
 
-"Humanizing" RGB values can be a bit tricky. I've found HSB does the best job of this, which is why I've added HSB values to CozyColor. 
+"Humanizing" RGB values can be a bit tricky. I've found HSB does the best job of this, which is why I've added HSV values to CozyColor. 
 
-If you aren't familiar with HSB colors, I'd suggest playing with a some color pickers to get a good idea of how it works. **Note: HSB is not HSL**. 
+If you aren't familiar with HSV colors, I'd suggest playing with a some color pickers to get a good idea of how it works. **Note: HSV is not HSL**. 
 
-HSB stands for Hue Saturation Brightness. Brightness is sometimes referred to as "Value", as well. HSB and HSV are the same thing. 
+HSV stands for Hue Saturation Value. Value is also often referred to as "Brightness", as well. HSB and HSV are the same thing. 
 
-Just for quick reference, here's a 3d representation of a HSB Color space:
+Just for quick reference, here's a 3d representation of a HSV Color space:
 
-![HSB](https://developer.openpack.io/cozy/docs/hsb.png "HSB Color Space")
+![HSV](https://developer.openpack.io/cozy/docs/hsb.png "HSV Color Space")
 
-HSB values in CozyColors are stored as values between 0 and 1. 
+HSV values in CozyColors are stored as values between 0 and 1. 
 
 Hue is the location on the circumference of the color wheel above. It's difficult to work with this value in a way that makes sense, and doing so is a topic for elsewhere.
 
@@ -172,13 +172,13 @@ Saturation is the distance from the center of the cone.
 
 1 = The Edge, 0 = The center
 
-Brightness is the distance from the bottom of the cone. 
+Value is the distance from the bottom of the cone. 
 
 1 = The base (full brightness), 0 = The point (always black)
 
 So, quickly referencing the image, you can check how bright an image is using 
 
-`cozycolor.b`. A brightness value below `0.2` usually means the color is fairly dark. 
+`cozycolor.v`. A value below `0.2` usually means the color is fairly dark. 
 
 A Saturation value lower than `0.15` typically means the color is very close to being greyscale. 
 
@@ -186,9 +186,10 @@ A Saturation value lower than `0.15` typically means the color is very close to 
 
 | Name | Description | Overrides |
 | ---- | ----------- | --------- |
-| fullBlack | Allows very low brightness levels for background colors |
-| ~~paletteAPI~~ | Whenever too few colors are found, call an online color API from what was found and create a new palette **Not Yet Implemented** |
+| fullBlack | Allows very low brightness levels for background colors | |
+| ~~paletteAPI~~ | Whenever too few colors are found, call an online color API from what was found and create a new palette **Not Yet Implemented** | |
 | noFallbackGeneration | Don't try to cleverly generate a color palette when finding certain colors fail. May improve speed, but may also look bad on certain images. | paletteAPI |
+| alwaysLightForeground | Use this option if you want controls to be lighter regardless of background brightness | |
 | dumb | Sacrifice a quality palette for speed. Good for when you only need a simple color. | All options above | 
 | dumber | Generate a palette as quickly as possible, and only set the "primary", "secondary", and "background" variables. | All options above |
 | dumbest | Only set the background variable. | All options above |
