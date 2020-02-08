@@ -56,7 +56,7 @@
     schema.contrastColor = generatedColors[@"secondary"];
     schema.backgroundColor = generatedColors[@"background"];
     schema.darker = !(schema.backgroundColor.v >=0.6);
-    if (([self.options containsObject:@"alwaysLightForeground"]))
+    if (([schema.options containsObject:@"alwaysLightForeground"]))
         schema.darker = YES;
     if (schema.darker)
     {
