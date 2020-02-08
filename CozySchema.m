@@ -56,6 +56,8 @@
     schema.contrastColor = generatedColors[@"secondary"];
     schema.backgroundColor = generatedColors[@"background"];
     schema.darker = !(schema.backgroundColor.v >=0.6);
+    if (([self.options containsObject:@"alwaysLightForeground"]))
+        schema.darker = YES;
     if (schema.darker)
     {
         schema.labelColor = schema.commonColor;
@@ -398,19 +400,19 @@
 
 -(int)colourDistance:(CozyColor *)a andB:(CozyColor *)b 
 {
-    return ABS(a.r-b.r)+ABS(a.g-b.g)+ABS(a.b-b.b);
+    return fabs(a.r-b.r)+fabs(a.g-b.g)+fabs(a.b-b.b);
 }
 
 // Color needs to be a bit brighter
 - (BOOL)brightnessIsTooLow:(CozyColor *)color
 {
-    return ([self.options containsObject:@"fullBlack"]) ? NO : color.v < 0.20;
+    return ([self.options containsObject:@"fullBlack"]) ? NO : color.v < 0.10;
 }
 
 // Avoid greyscale
 - (BOOL)saturationIsTooLow:(CozyColor *)color
 {
-	return color.s < 0.15;
+	return color.s < 0.1;
 }
 
 + (CozyColor *)lighterColorForColor:(CozyColor *)c byFraction:(CGFloat)frac
@@ -419,10 +421,9 @@
     r = c.r/255;
     g = c.g/255;
     b = c.b/255;
-    return [[CozyColor alloc] initWithRed:MIN(r + frac, 1.0)*255
-                            green:MIN(g + frac, 1.0)*255
-                            blue:MIN(b + frac, 1.0)*255];
-    return nil;
+    return [[CozyColor alloc] initWithRed:(r+frac)*255
+                            green:(g+frac)*255
+                            blue:(b+frac)*255];
 }
 
 + (CozyColor *)darkerColorForColor:(CozyColor *)c byFraction:(CGFloat)frac
@@ -431,9 +432,9 @@
     r = c.r/255;
     g = c.g/255;
     b = c.b/255;
-    return [[CozyColor alloc] initWithRed:MAX(r - frac, 0.0)*255
-                            green:MAX(g - frac, 0.0)*255
-                            blue:MAX(b - frac, 0.0)*255];
+    return [[CozyColor alloc] initWithRed:(r-frac)*255
+                            green:(g-frac)*255
+                            blue:(b-frac)*255];
 }
 
 @end
