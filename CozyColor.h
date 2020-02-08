@@ -10,6 +10,8 @@
 @property (nonatomic, assign) CGFloat b;
 @property (nonatomic, assign) CGFloat a;
 
+@property (nonatomic, assign) CGFloat d;
+
 - (UIColor *)getColor; 
 
 @end

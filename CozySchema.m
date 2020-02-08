@@ -7,14 +7,6 @@
 
 #include "CozySchema.h"
 
-//  Stick an extra variable on CozyColor for our contrast calculations
-//  Completely useless to anyone other than the analyzer.
-@interface CozyColor (DistanceCalculation)
-
-@property (nonatomic, assign) CGFloat d;
-
-@end
-
 //  A few methods that dont make sense for use outside of the 
 //      analyzer. 
 @interface CozySchema (ColorCalculations)
@@ -135,7 +127,6 @@
                 x = (x == dimension - 1) ? 0 : x+1;
                 y = (x == 0) ? y+1 : y;
             }
-            free(rawData);
 
             e = [[CozyColor alloc] initWithRed:eR/dimension green:eG/dimension blue:eB/dimension];
             if (![self saturationIsTooLow:e] || ([self.options containsObject:@"dumber"]))
@@ -152,6 +143,7 @@
             }
         }
     }
+    free(rawData);
 
     //5. calculate the frequency of colour
     NSMutableArray * accents = [NSMutableArray new]; //holds valid accents
@@ -382,9 +374,9 @@
     self.foundColors = cx;
 
     NSMutableDictionary * result = [NSMutableDictionary new];
-    [result setValue:[e getColor] forKey:@"background"];
-    [result setValue:[p getColor] forKey:@"primary"];
-    [result setValue:[s getColor] forKey:@"secondary"]; 
+    [result setValue:e forKey:@"background"];
+    [result setValue:p forKey:@"primary"];
+    [result setValue:s forKey:@"secondary"]; 
 
     return result;
 
