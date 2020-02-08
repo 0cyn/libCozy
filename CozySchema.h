@@ -1,4 +1,5 @@
 #include "CozyColor.h"
+#include <UIKit/UIImage.h>
 
 @interface CozySchema : NSObject
 

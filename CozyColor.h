@@ -1,3 +1,6 @@
+#include <Foundation/Foundation.h>
+#include <UIKit/UIColor.h>
+
 @interface CozyColor : NSObject
 
 - (instancetype)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
