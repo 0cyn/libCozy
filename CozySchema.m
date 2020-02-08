@@ -61,10 +61,18 @@
     if (schema.darker)
     {
         schema.labelColor = schema.commonColor;
+        while (schema.labelColor.v < 0.65)
+        {
+            schema.labelColor = [CozySchema lighterColorForColor:schema.labelColor byFraction:0.1];
+        }
         schema.secondaryLabelColor = [CozySchema darkerColorForColor:schema.labelColor byFraction:0.1];
         schema.tertiaryLabelColor = [CozySchema darkerColorForColor:schema.secondaryLabelColor byFraction:0.1];
         schema.controlColor = schema.contrastColor;
-        schema.secondaryControlColor = [CozySchema darkerColorForColor:schema.controlColor byFraction:0.1];
+        while (schema.controlColor.v < 0.85)
+        {
+            schema.controlColor = [CozySchema lighterColorForColor:schema.controlColor byFraction:0.1];
+        }
+        schema.secondaryControlColor = [CozySchema darkerColorForColor:schema.controlColor byFraction:0.05];
         schema.tertiaryControlColor = [CozySchema darkerColorForColor:schema.secondaryControlColor byFraction:0.1];
     }
     else 
@@ -75,6 +83,13 @@
         schema.controlColor = schema.contrastColor;
         schema.secondaryControlColor = [CozySchema lighterColorForColor:schema.controlColor byFraction:0.1];
         schema.tertiaryControlColor = [CozySchema lighterColorForColor:schema.secondaryControlColor byFraction:0.1];
+    }
+    if (([schema.options containsObject:@"darkenBackgroundTillReadable"]))
+    {
+        while (schema.backgroundColor.v > 0.6 || (schema.backgroundColor.s >0.7 && schema.backgroundColor.v > 0.8) )
+        {
+            schema.backgroundColor = [CozySchema darkerColorForColor:schema.backgroundColor byFraction:0.5];
+        }
     }
     return schema;
 }
