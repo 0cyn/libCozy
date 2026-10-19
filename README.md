@@ -1,12 +1,12 @@
 # Cozy
 
-Dynamic image color analyzer
+Dynamic image color analyzer in pure Obj-C. 
 
-![OpenPack](https://openpack.io/lib-openpack-mit-@0.5x.png "Created for OpenPack. Licensed under MIT")
+This was written in 2020 to programmatically pull out important colors from random album art for view/window coloring/accents.
+
+The fundamentals have not changed and I'd imagine this still works and will continue to for a Very Very long time, but this project is very much not being maintained anymore. 
 
 ### Use cases
-
-This library was written primarily for album art color analysis, but should be able to handle just about any image. 
 
 Your milage may vary, and edge cases may require experimentation. 
 
